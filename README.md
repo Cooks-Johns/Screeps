@@ -1,3 +1,6 @@
 # Screeps
 Check out my current Map.
-https://screeps.com/a/#!/room/shard3/W28S44
+ToDOS: add link
+
+## Scripts in testing
+TESTING.js --> https://github.com/Cooks-Johns/Screeps/blob/master/screeps/notes/TESTING.js
