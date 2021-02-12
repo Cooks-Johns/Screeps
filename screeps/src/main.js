@@ -21,24 +21,48 @@ module.exports.loop = function () {
         }
     }
 	
-// RESPWAN
+// CLEAR MEMORY OF OLD CREEP NAMES
+
   for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
             delete Memory.creeps[name];
             console.log('Clearing non-existing creep memory:', name);
         }
     }
-
+	
+// RESPWAN - builders
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     console.log('Builder: ' + builders.length);
 
-    if(builders.length < 2) {
+    if(builders.length < 5) {
         var newName = 'Builder' + Game.time;
         console.log('Spawning new builder: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE], newName,
+        Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE, MOVE], newName,
             {memory: {role: 'builder'}});
     }
+// RESPWAN - harvesters
+	var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
+		console.log('Harvester: ' + harvesters.length);
 
+		if(harvesters.length < 3) {
+			var newName = 'Harvester' + Game.time;
+			console.log('Spawning new harvester: ' + newName);
+			Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, CARRY, MOVE, MOVE], newName,
+				{memory: {role: 'harvester'}});
+		}
+// RESPWAN - upgraders
+	var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
+		console.log('Upgrader: ' + upgraders.length);
+
+		if(upgraders.length < 1) {
+			var newName = 'Upgrader' + Game.time;
+			console.log('Spawning new upgrader: ' + newName);
+			Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE, MOVE], newName,
+				{memory: {role: 'upgrader'}});
+		}
+
+
+// CREEP SPAWNING LOCATION 
     if(Game.spawns['Spawn1'].spawning) {
         var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
         Game.spawns['Spawn1'].room.visual.text(
