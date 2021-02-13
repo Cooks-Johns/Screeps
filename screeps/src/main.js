@@ -6,6 +6,7 @@ module.exports.loop = function () {
 
 
 // ---> need to fix	TOWER
+
     var tower = Game.getObjectById('4f171b5f9ca4e3c11dd9f02b');
     if(tower) {
         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
