@@ -29,8 +29,28 @@ module.exports.loop = function () {
             console.log('Clearing non-existing creep memory:', name);
         }
     }
-    
-    
+	
+// NUMBER OF SCREEPS	
+    const mininumUpgraders = 6;
+	const mininumHarvesters = 2;
+	const mininumBuilders = 2;
+	
+	const numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role === 'harvester');
+    const numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role === 'upgrader');
+    const numberOfBuilders = _.sum(Game.creeps, (c) => c.memory.role === 'builder');
+
+    const energy = Game.spawns.Spawn1.room.energyCapacityAvailable;
+	
+	let spawnResult = undefined;
+	
+	console.log('--- statistics ---');
+    console.log('harvesters: ', numberOfHarvesters + '/' + mininumHarvesters);
+    console.log('upgraders: ', numberOfUpgraders + '/' + mininumUpgraders);
+    console.log('builders: ', numberOfBuilders + '/' + mininumBuilders);
+    console.log('energy: ', energy);
+    console.log('-------------------');
+	
+	//-- Refactor START --------
     // RESPWAN - upgraders
 	var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 		console.log('Upgrader: ' + upgraders.length);
@@ -63,7 +83,7 @@ module.exports.loop = function () {
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE, MOVE], newName,
             {memory: {role: 'builder'}});
     }
-
+//-- Refactor END -------
 
 // CREEP SPAWNING LOCATION 
     if(Game.spawns['Spawn1'].spawning) {
