@@ -59,7 +59,7 @@ module.exports.loop = function () {
 			var newName = 'Upgrader' + Game.time;
 			console.log('Spawning new upgrader: ' + newName);
 			Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE], newName,
-				{memory: {role: 'upgrader'}});
+				{memory: {role: 'upgrader'}}); 
 		}
     
     // RESPWAN - harvesters
